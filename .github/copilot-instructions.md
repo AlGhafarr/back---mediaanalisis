@@ -45,7 +45,7 @@ copy .env.example .env
 # Start all services
 docker-compose -f infrastructure/docker/docker-compose.yml up -d
 
-# Access API: http://localhost:8000/docs
+# Access API: http://localhost:7000/docs
 # Celery monitoring: http://localhost:5555
 ```
 
@@ -237,8 +237,8 @@ pytest -k test_api  # Run specific tests
 ## Support
 
 Check the API documentation at:
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
+- Swagger UI: http://localhost:7000/docs
+- ReDoc: http://localhost:7000/redoc
 
 ---
 

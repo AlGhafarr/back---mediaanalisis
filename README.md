@@ -54,8 +54,8 @@ tests/
    ```
 
 3. **Access the API**:
-   - API: http://localhost:8000
-   - Docs: http://localhost:8000/docs
+   - API: http://localhost:7000
+   - Docs: http://localhost:7000/docs
    - Flower (Celery): http://localhost:5555
 
 4. **Stop services**:

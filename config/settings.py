@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     
     # API
     HOST: str = "0.0.0.0"
-    PORT: int = 8000
+    PORT: int = 7000
     RELOAD: bool = True
     API_TITLE: str = "Big Data Backend API"
     API_VERSION: str = "0.1.0"

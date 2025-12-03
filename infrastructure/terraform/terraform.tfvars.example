@@ -4,6 +4,6 @@
 aws_region            = "us-east-1"
 environment           = "dev"
 app_name              = "bigdata"
-container_port        = 8000
+container_port        = 7000
 desired_task_count    = 2
 rds_instance_class    = "db.t3.micro"

@@ -137,8 +137,8 @@ Infrastructure as code for AWS:
    ```
 
 3. **Access the API**:
-   - Swagger UI: http://localhost:8000/docs
-   - ReDoc: http://localhost:8000/redoc
+   - Swagger UI: http://localhost:7000/docs
+   - ReDoc: http://localhost:7000/redoc
    - Celery Flower: http://localhost:5555
 
 4. **Run tests**:

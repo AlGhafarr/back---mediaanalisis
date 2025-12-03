@@ -19,7 +19,7 @@ variable "app_name" {
 variable "container_port" {
   description = "Container port"
   type        = number
-  default     = 8000
+  default     = 7000
 }
 
 variable "desired_task_count" {
