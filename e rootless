@@ -1,0 +1,25 @@
+[0;1;32m●[0m docker.service - Docker Application Container Engine (Rootless)
+     Loaded: loaded (/home/grapari/.config/systemd/user/docker.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Tue 2025-12-02 22:31:18 WIB; 30min ago
+       Docs: https://docs.docker.com/go/rootless/
+   Main PID: 50948 (rootlesskit)
+      Tasks: 58
+     Memory: 1.9G
+        CPU: 43.741s
+     CGroup: /user.slice/user-1002.slice/user@1002.service/app.slice/docker.service
+             ├─50948 rootlesskit --state-dir=/run/user/1002/dockerd-rootless --net=slirp4netns --mtu=65520 --slirp4netns-sandbox=auto --slirp4netns-seccomp=auto --disable-host-loopback --port-driver=builtin --copy-up=/etc --copy-up=/run --propagation=rslave /home/grapari/bin/dockerd-rootless.sh
+             ├─50960 /proc/self/exe --state-dir=/run/user/1002/dockerd-rootless --net=slirp4netns --mtu=65520 --slirp4netns-sandbox=auto --slirp4netns-seccomp=auto --disable-host-loopback --port-driver=builtin --copy-up=/etc --copy-up=/run --propagation=rslave /home/grapari/bin/dockerd-rootless.sh
+             ├─50975 slirp4netns --mtu 65520 -r 3 --disable-host-loopback --enable-sandbox --enable-seccomp 50960 tap0
+             ├─50984 dockerd
+             └─51016 containerd --config /run/user/1002/docker/containerd/containerd.toml
+
+Dec 02 22:42:03 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[50984]: time="2025-12-02T22:42:03.446322097+07:00" level=info msg="ignoring event" container=b1a3183aa7f4d83e347bc03277873bdd67aba93e20cd4732de3d45cfb8cf6161 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Dec 02 22:42:03 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[51016]: time="2025-12-02T22:42:03.446428696+07:00" level=info msg="cleaning up after shim disconnected" id=b1a3183aa7f4d83e347bc03277873bdd67aba93e20cd4732de3d45cfb8cf6161 namespace=moby
+Dec 02 22:42:03 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[51016]: time="2025-12-02T22:42:03.446440604+07:00" level=info msg="cleaning up dead shim" id=b1a3183aa7f4d83e347bc03277873bdd67aba93e20cd4732de3d45cfb8cf6161 namespace=moby
+Dec 02 22:42:03 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[50984]: time="2025-12-02T22:42:03.499058579+07:00" level=error msg="Handler for POST /v1.52/containers/b1a3183aa7f4d83e347bc03277873bdd67aba93e20cd4732de3d45cfb8cf6161/start returned error: failed to set up container networking: driver failed programming external connectivity on endpoint bigdata_postgres (6a87de30fa4a6b412d9cae5d2475b55def83e6b622944bf410cf51a1364aad9b): error while calling RootlessKit PortManager.AddPort(): listen tcp4 0.0.0.0:5432: bind: address already in use"
+Dec 02 22:52:39 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[51016]: time="2025-12-02T22:52:39.197362234+07:00" level=info msg="shim disconnected" id=114a2147740e77e5c2b5ee12d1ece0572ed6d0133a8cad640af63d673332dd0c namespace=moby
+Dec 02 22:52:39 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[51016]: time="2025-12-02T22:52:39.197669225+07:00" level=info msg="cleaning up after shim disconnected" id=114a2147740e77e5c2b5ee12d1ece0572ed6d0133a8cad640af63d673332dd0c namespace=moby
+Dec 02 22:52:39 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[51016]: time="2025-12-02T22:52:39.197683668+07:00" level=info msg="cleaning up dead shim" id=114a2147740e77e5c2b5ee12d1ece0572ed6d0133a8cad640af63d673332dd0c namespace=moby
+Dec 02 22:52:39 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[50984]: time="2025-12-02T22:52:39.197853685+07:00" level=info msg="ignoring event" container=114a2147740e77e5c2b5ee12d1ece0572ed6d0133a8cad640af63d673332dd0c module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Dec 02 22:54:57 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[50984]: time="2025-12-02T22:54:57.820041050+07:00" level=warning msg="forcibly turning on oci-mediatype mode for attestations" span="exporting to image" spanID=7b4540ed8dd7842e traceID=6886d2105a4f43292a0f4af3cb7bd70c
+Dec 02 22:54:57 kuda-jumping.ikhlasinaja.dco dockerd-rootless.sh[50984]: time="2025-12-02T22:54:57.825702116+07:00" level=warning msg="forcibly turning on oci-mediatype mode for attestations" span="exporting to image" spanID=09c068ed52b4f180 traceID=6886d2105a4f43292a0f4af3cb7bd70c
