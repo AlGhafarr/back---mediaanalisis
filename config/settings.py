@@ -1,19 +1,21 @@
 from pydantic_settings import BaseSettings
-from typing import List
-
+from typing import Optional
+import secrets
 
 class Settings(BaseSettings):
     """Application settings."""
     
-    # API
-    HOST: str = "0.0.0.0"
-    PORT: int = 7000
-    RELOAD: bool = True
-    API_TITLE: str = "Big Data Backend API"
-    API_VERSION: str = "0.1.0"
+    APP_NAME: str = "Bigdata Media Intelligence",
+    APP_VERSION: str = " 2.0.0",
+    DEBUG: bool = True
+
+    ##security
+    SECRET_KEY: str = secrets.token_urlsafe(32)
+    ALGORITHM: str = "H256"
+    ACESS_TOKEN_EXPIRE_MINUTES: int = 30
     
     # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost:5432/bigdata"
+    DATABASE_URL: str = "postgresql://bigdata_user:bigdata_password@localhost:5432/bigdata"
     SQL_ECHO: bool = False
     
     # Redis
@@ -24,19 +26,19 @@ class Settings(BaseSettings):
     CELERY_RESULT_BACKEND: str = "redis://localhost:6379/2"
     
     # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:8080"]
+    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5174"]
     
-    # Infrastructure
-    AWS_REGION: str = "us-east-1"
-    AWS_ACCESS_KEY_ID: str = ""
-    AWS_SECRET_ACCESS_KEY: str = ""
+#    # Infrastructure
+#    AWS_REGION: str = "us-east-1"
+#    AWS_ACCESS_KEY_ID: str = ""
+#    AWS_SECRET_ACCESS_KEY: str = ""
     
     # Domain Management
-    DOMAIN_PROVIDER: str = "route53"  # route53, cloudflare, etc.
+#    DOMAIN_PROVIDER: str = "route53"  # route53, cloudflare, etc.
     
     class Config:
         env_file = ".env"
-        env_file_encoding = "utf-8"
+        case_sensitive = True
 
 
 settings = Settings()

@@ -1,57 +1,45 @@
-import logging
-from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import routes
-from config.settings import settings
+from app.database import engine, Base
+from app.api.routes import router as include_router
+from app.api.v1 import api_router as v1_router
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+Base.metadata.create_all(bind=engine)
 
+app = FastAPI(
+    title="Bigdata Media Intelegence API",
+    description="APi Infrastucture managements",
+    version="2.0.0"
+)
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    logger.info("Application startup")
-    yield
-    logger.info("Application shutdown")
+##CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers["*"]
+)
 
+@app.get("/")
+def root():
+    return {
+        "message": "Bigdata Media Intellegence APi",
+        "version": "2.0.0",
+        "docs": "/docs",
+        "infrastructure": "/api/v1/infrastructure",
+        "media": "/api/v1"
+    }
 
-def create_app() -> FastAPI:
-    """Create and configure FastAPI application."""
-    app = FastAPI(
-        title="Big Data Backend",
-        description="Backend for managing website, servers, domains, and network infrastructure",
-        version="0.1.0",
-        lifespan=lifespan,
-    )
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "service": "media-intelligence"}
 
-    # CORS middleware
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=settings.CORS_ORIGINS,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+##router
 
-    # Include routes
-    app.include_router(routes.router, prefix="/api/v1")
-
-    # Health check
-    @app.get("/health")
-    async def health_check():
-        return {"status": "healthy"}
-
-    return app
-
-
-app = create_app()
+app.include_router(infrastructure_router, prefix="/api/v1/infrastructure")
+app.include_router(v1_router, prefix="/api/v1")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(
-        "app.main:app",
-        host=settings.HOST,
-        port=settings.PORT,
-        reload=settings.RELOAD,
-    )
+    uvicorn.run(app, host="0.0.0.0", port=70000)
