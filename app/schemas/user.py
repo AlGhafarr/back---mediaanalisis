@@ -27,11 +27,8 @@ class UserResponse(UserBase):
 
 class Token(BaseModel):
     access_token: str
-    token_type: str
-
-class TokenData(BaseModel):
-    username: Optional[str] = None
-
+    token_type: String
+    
 class LoginRequest(BaseModel):
     username: str
     password: str

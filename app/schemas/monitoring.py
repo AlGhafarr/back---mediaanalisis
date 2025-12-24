@@ -1,5 +1,5 @@
 from pydantic import BaseModels
-from typing import Optional, Dict, Analyst
+from typing import Optional, Dict, Any
 from datetime import datatime
 
 class MonitoringDataBase(BaseModels): 
@@ -15,6 +15,7 @@ class MonitoringDataBase(BaseModels):
     sentiment: Optional[str] = None
     sentiment_score: Optional[float] = None
     metadata: Optional[Dict[str, Any]] = None
+    posted_at: Optional[datetime] = None
 
 class MonitoringDataCreate(MonitoringDataBase):
     domain_id: int
@@ -27,4 +28,3 @@ class MonitoringDataResponse(MonitoringDataBase):
     class config:
         from_attributes = True
 
-        
