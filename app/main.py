@@ -2,6 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.api.routes import router as include_router
+
+try:
+    from app.api.routes import router as infrastructure_router
+    HAS_INFRA_ROUTER = True
+except ImportError:
+    HAS_INFRA_ROUTER = False
+
 from app.api.v1 import api_router as v1_router
 
 Base.metadata.create_all(bind=engine)
@@ -18,7 +25,7 @@ app.add_middleware(
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers["*"]
+    allow_headers=["*"]
 )
 
 @app.get("/")
@@ -37,7 +44,9 @@ def health_check():
 
 ##router
 
-app.include_router(infrastructure_router, prefix="/api/v1/infrastructure")
+if HAS_INFRA_ROUTER:
+    app.include_router(infrastructure_router, prefix="/api/v1/infrastructure")
+
 app.include_router(v1_router, prefix="/api/v1")
 
 if __name__ == "__main__":

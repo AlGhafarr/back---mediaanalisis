@@ -5,8 +5,8 @@ import secrets
 class Settings(BaseSettings):
     """Application settings."""
     
-    APP_NAME: str = "Bigdata Media Intelligence",
-    APP_VERSION: str = " 2.0.0",
+    APP_NAME: str = "Bigdata Media Intelligence"
+    APP_VERSION: str = " 2.0.0"
     DEBUG: bool = True
 
     ##security
@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     CELERY_RESULT_BACKEND: str = "redis://localhost:6379/2"
     
     # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5174"]
+    CORS_ORIGINS: list = ["http://localhost:3000", "http://localhost:5174"]
     
 #    # Infrastructure
 #    AWS_REGION: str = "us-east-1"
@@ -39,6 +39,5 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = True
-
 
 settings = Settings()

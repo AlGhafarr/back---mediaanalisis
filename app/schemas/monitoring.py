@@ -1,8 +1,8 @@
-from pydantic import BaseModels
+from pydantic import BaseModel
 from typing import Optional, Dict, Any
-from datetime import datatime
+from datetime import datetime
 
-class MonitoringDataBase(BaseModels): 
+class MonitoringDataBase(BaseModel): 
     platform: str
     post_id: str
     content: str

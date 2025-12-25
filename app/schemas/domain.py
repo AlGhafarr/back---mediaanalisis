@@ -1,8 +1,8 @@
-from pydantic import BaseModels
+from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-class DomainBase(BaseModels):
+class DomainBase(BaseModel):
     name: str
     description: Optional[str] = None
     status: str = "active"
@@ -10,7 +10,7 @@ class DomainBase(BaseModels):
 class DomainCreate(DomainBase):
     pass
 
-class DomainUpdate(BaseModels):
+class DomainUpdate(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     status: Optional[str] = None

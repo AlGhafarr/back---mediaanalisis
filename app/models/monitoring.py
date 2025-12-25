@@ -1,4 +1,4 @@
-from sql import Column, Integer, String, Text, Float, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -8,7 +8,7 @@ class MonitoringData(Base):
     __tablename__ = "monitoring_data"
 
     id = Column(Integer, primary_key=True, index=True)
-    domain_id = Column(Integer, ForeignKey(media_domains.id, ondelete="CASCADE"))
+    domain_id = Column(Integer, ForeignKey("media_domains.id", ondelete="CASCADE"))
     platform = Column(String(50), index=True, nullable=False)
     post_id = Column(String(255), unique=True, index=True, nullable=False)
     content = Column(Text)
@@ -23,7 +23,7 @@ class MonitoringData(Base):
     sentiment = Column(String(50))
     sentiment_score = Column(Float)
 
-    metadata = Column(JSON)
+    meta_data = Column(JSON)
     posted_at = Column(DateTime(timezone=True))
     collected_at = Column(DateTime(timezone=True), server_default=func.now())
 

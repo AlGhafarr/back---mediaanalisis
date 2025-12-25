@@ -1,6 +1,6 @@
-from datetime import datatime, timedelta
+from datetime import datetime, timedelta
 from typing import Optional
-from jose import JWTerror, jwt
+from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -9,7 +9,7 @@ from app.database import get_db
 from app.models.user import User
 from config.settings import settings
 
-SECRECT_KEY=
+SECRECT_KEY= settings.SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -27,7 +27,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     if expires_delta:
         expire = datatetime.utcnow() + expires_delta
     else:
-        expires_delta = datatime,utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        expires_delta = datetime,utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
 
         to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRECT_KEY, algorithm=ALGORITHM)
