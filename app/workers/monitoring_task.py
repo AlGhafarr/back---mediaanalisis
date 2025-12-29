@@ -3,7 +3,7 @@ from sqlalchemy.orms import Session
 from app.database import SessionLocal
 from app.models.monitoring import MonitoringData
 from app.models.domain import domain
-from datatime import datetime
+from datetime import datetime
 import requests
 from textblob import TextBlob
 import logging

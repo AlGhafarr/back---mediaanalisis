@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
 
-class Domain(Base):
+class MediaDomain(Base):
     __tablename__ = "media_domains"
 
     id = Column(Integer, primary_key=True, index=True)

@@ -1,11 +1,11 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))vkk
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app.database import SessionLocal
 from app.models.user import User
-from app.models.domain import domain
+from app.models.domain import MediaDomain
 from app.models.monitoring import MonitoringData
 from app.core.security import get_password_hash
 from datetime import datetime, timedelta
@@ -40,7 +40,7 @@ domains_data = [
 ]
 
 for domain_data in domains_data:
-    domain = Domain(**domain_data, created_by=admin.id)
+    domain = MediaDomain(**domain_data, created_by=admin.id)
     db.add(domain)
     
 db.commit()
@@ -54,14 +54,14 @@ for i in range(100):
     sentiment = random.choice(sentiments)
 
     monitoring = MonitoringData(
-        domain_is=random.radint(1, 3),
+        domain_id=random.radint(1, 3),
         platform=platform,
-        post_id=f"{platform}_{i}_{random,radint(1000, 9999)}",
+        post_id=f"{platform}_{i}_{random.radint(1000, 9999)}",
         content=f"Sample content about the brands {i}",
         author=f"user_{random.radint(1, 100)}",
         url=f"https://{platform}.com/post/{i}",
         likes=random.radint(10, 1000),
-        comments=ranfom.radint(5, 200),
+        comments=random.radint(5, 200),
         shares=random.radint(0, 100),
         views=random.radint(100, 10000),
         sentiment=sentiment,

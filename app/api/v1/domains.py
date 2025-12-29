@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
 from app.database import get_db
-from app.models.domain import Domain
+from app.models.domain import  MediaDomain
 from app.models.user import User
 from app.schemas.domain import DomainCreate, DomainUpdate, DomainResponse
 from app.core.security import get_current_active_user
@@ -18,7 +18,7 @@ def list_domains(
     current_user: User = Depends(get_current_active_user)
 ):
     """List all domains"""
-    domains = db.query(Domain).offset(skip).limit(limit).all()
+    domains = db.query(MediaDomain).offset(skip).limit(limit).all()
     return domains
 
 

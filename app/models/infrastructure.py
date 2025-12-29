@@ -18,7 +18,7 @@ class Server(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
-class Domain(Base):
+class InfraDomain(Base):
     __tablename__ = "domains"
     
     id = Column(Integer, primary_key=True, index=True)

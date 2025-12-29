@@ -11,8 +11,8 @@ class Settings(BaseSettings):
 
     ##security
     SECRET_KEY: str = secrets.token_urlsafe(32)
-    ALGORITHM: str = "H256"
-    ACESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
     # Database
     DATABASE_URL: str = "postgresql://bigdata_user:bigdata_password@localhost:5432/bigdata"

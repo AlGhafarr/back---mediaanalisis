@@ -54,7 +54,7 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
     if not user.is_active:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Inactive User")
 
-    access_token = create_acces_token(
+    access_token = create_access_token(
         data={"sub": str(user.id), "username": user.username, "role": user.role}
     )
 
